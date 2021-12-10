@@ -23,7 +23,7 @@ import {
 } from 'react-native';
 import MapView from 'react-native-maps';
 
-const MapScreen = navigation => {
+const MapScreen = ({navigation}) => {
   const [state, setState] = useState({markers: []});
 
   const func = () =>
@@ -68,14 +68,12 @@ const MapScreen = navigation => {
           longitude: 18.4324,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
-        }}
-        onPress={() => {
-          () => func();
         }}>
         {state.markers.map((marker, i) => (
           <MapView.Marker
             key={i}
             coordinate={{latitude: marker.lat, longitude: marker.long}}
+            onPress={() => navigation.navigate('EditMarkerScreen')} //TODO to id sie zmieni kiedys?
           />
         ))}
       </MapView>

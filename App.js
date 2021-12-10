@@ -12,6 +12,7 @@ import MapScreen from './MapScreen';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import EditMarkerScreen from './EditMarkerScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,11 @@ const App = () => (
       <Stack.Screen
         name="MapScreen"
         component={MapScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="EditMarkerScreen"
+        component={EditMarkerScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
