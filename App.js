@@ -9,6 +9,7 @@
 import React from 'react';
 import LoginScreen from './LoginScreen';
 import MapScreen from './MapScreen';
+import RegisterScreen from './RegisterScreen';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -27,6 +28,11 @@ const App = () => (
       <Stack.Screen
         name="MapScreen"
         component={MapScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="RegisterScreen"
+        component={RegisterScreen}
         options={{headerShown: false}}
       />
       <Stack.Screen

@@ -30,7 +30,11 @@ const LoginScreen = ({navigation}) => (
         title="LOG IN"
         onPress={() => navigation.navigate('MapScreen')}
       />
-      <Button style={styles.register} title="REGISTER" onPress={() => {}} />
+      <Button
+        style={styles.register}
+        title="REGISTER"
+        onPress={() => navigation.navigate('RegisterScreen')}
+      />
     </View>
   </View>
 );
@@ -43,11 +47,8 @@ const styles = StyleSheet.create({
     flex: 0.85,
     justifyContent: 'center',
   },
-  login: {
-  },
-  register: {
-
-  },
+  login: {},
+  register: {},
   fixToText: {
     flexDirection: 'row',
     justifyContent: 'space-around',
