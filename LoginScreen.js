@@ -19,22 +19,24 @@ import {
   Image,
   ImageBackground,
   Button,
+  TouchableOpacity,
 } from 'react-native';
 
 const LoginScreen = ({navigation}) => (
   <View style={styles.container}>
     <Image style={styles.image} source={require('./img/backgroundImage.png')} />
+    <Text style={styles.header}>scooter finder</Text>
     <View style={styles.fixToText}>
-      <Button
-        style={styles.login}
-        title="LOG IN"
-        onPress={() => navigation.navigate('MapScreen')}
-      />
-      <Button
-        style={styles.register}
-        title="REGISTER"
-        onPress={() => navigation.navigate('RegisterScreen')}
-      />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('LoginFormScreen')}>
+        <Text style={styles.buttontxt}>LOG IN</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('RegisterScreen')}>
+        <Text style={styles.buttontxt}>REGISTER</Text>
+      </TouchableOpacity>
     </View>
   </View>
 );
@@ -45,10 +47,27 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 0.85,
-    justifyContent: 'center',
+    width: '100%',
   },
-  login: {},
-  register: {},
+  header: {
+    position: 'absolute',
+    fontSize: 70,
+    color: '#fff',
+  },
+  button: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    padding: 15,
+    width: '40%',
+    backgroundColor: '#1b4798',
+    marginTop: 30,
+    borderRadius: 10,
+  },
+  buttontxt: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
   fixToText: {
     flexDirection: 'row',
     justifyContent: 'space-around',

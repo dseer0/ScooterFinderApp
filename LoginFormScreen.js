@@ -6,8 +6,7 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
-import GetLocation from 'react-native-get-location';
+import React from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -23,26 +22,26 @@ import {
   Button,
   TouchableOpacity,
 } from 'react-native';
-import MapView from 'react-native-maps';
 
-const EditMarkerScreen = ({navigation}) => (
+const LoginFormScreen = ({navigation}) => (
   <View style={styles.container}>
-    <View style={styles.markerForm}>
-      <Text style={styles.header}>Edit Marker</Text>
+    <View style={styles.loginform}>
+      <Text style={styles.header}>Log in</Text>
       <TextInput
         style={styles.textinput}
-        placeholder="description"
+        placeholder="Email"
+        underlineColorAndroid={'transparent'}
+      />
+      <TextInput
+        style={styles.textinput}
+        placeholder="Password"
+        secureTextEntry={true}
         underlineColorAndroid={'transparent'}
       />
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('MapScreen')}>
-        <Text style={styles.buttontxt}>Submit</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('MapScreen')}>
-        <Text style={styles.buttontxt}>Delete</Text>
+        <Text style={styles.buttontxt}>Log in</Text>
       </TouchableOpacity>
     </View>
   </View>
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
     paddingLeft: 60,
     paddingRight: 60,
   },
-  markerForm: {
+  loginform: {
     alignSelf: 'stretch',
   },
   header: {
@@ -89,4 +88,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditMarkerScreen;
+export default LoginFormScreen;

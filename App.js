@@ -10,6 +10,7 @@ import React from 'react';
 import LoginScreen from './LoginScreen';
 import MapScreen from './MapScreen';
 import RegisterScreen from './RegisterScreen';
+import LoginFormScreen from './LoginFormScreen';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -38,6 +39,11 @@ const App = () => (
       <Stack.Screen
         name="EditMarkerScreen"
         component={EditMarkerScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="LoginFormScreen"
+        component={LoginFormScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
