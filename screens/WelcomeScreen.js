@@ -21,14 +21,14 @@ import {
   Button,
 } from 'react-native';
 
-const LoginScreen = ({navigation}) => (
+const WelcomeScreen = ({navigation}) => (
   <View style={styles.container}>
-    <Image style={styles.image} source={require('./img/backgroundImage.png')} />
+    <Image style={styles.image} source={require('../img/backgroundImage.png')} />
     <View style={styles.fixToText}>
       <Button
         style={styles.login}
         title="LOG IN"
-        onPress={() => navigation.navigate('MapScreen')}
+        onPress={() => navigation.navigate('LoginScreen')}
       />
       <Button
         style={styles.register}
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default WelcomeScreen;

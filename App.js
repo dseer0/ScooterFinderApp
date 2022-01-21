@@ -7,27 +7,32 @@
  */
 
 import React from 'react';
-import LoginScreen from './LoginScreen';
-import MapScreen from './MapScreen';
-import RegisterScreen from './RegisterScreen';
+import WelcomeScreen from './screens/WelcomeScreen';
+import MapScreen from './screens/MapScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import EditMarkerScreen from './EditMarkerScreen';
-
+import EditMarkerScreen from './screens/EditMarkerScreen';
+import LoginScreen from './screens/LoginScreen';
 const Stack = createNativeStackNavigator();
 
 const App = () => (
   <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen
-        name="LoginScreen"
-        component={LoginScreen}
+        name="WelcomeScreen"
+        component={WelcomeScreen}
         options={{headerShown: false}}
       />
       <Stack.Screen
         name="MapScreen"
         component={MapScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
         options={{headerShown: false}}
       />
       <Stack.Screen
