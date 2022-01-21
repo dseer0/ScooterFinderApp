@@ -19,9 +19,10 @@ import {
   Image,
   ImageBackground,
   Button,
+  TouchableOpacity,
 } from 'react-native';
 
-const WelcomeScreen = ({navigation}) => (
+const LoginScreen = ({navigation}) => (
   <View style={styles.container}>
     <Image style={styles.image} source={require('../img/backgroundImage.png')} />
     <View style={styles.fixToText}>
