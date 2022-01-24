@@ -41,7 +41,7 @@ const WelcomeScreen = ({navigation}) => (
         onPress={() => {
           navigation.navigate('RegisterScreen');
         }}>
-        <Text style={styles.buttontxt}>Logout</Text>
+        <Text style={styles.buttontxt}>Register</Text>
       </TouchableOpacity>
     </View>
   </View>
