@@ -19,7 +19,6 @@ const MapScreen = ({route, navigation}) => {
   const [state, setState] = useState({markers: []});
   // const [token, setToken] = useState('');
   const token = route.params.token;
-  const [preventFromGoingBack, setPreventFromGoingBack] = useState(true);
 
   const loadpins = () => {
     getpins(token).then(json => {
@@ -50,18 +49,19 @@ const MapScreen = ({route, navigation}) => {
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       //console.log('focus => ' + token);
-      setPreventFromGoingBack(true);
+      //setPreventFromGoingBack(true);
 
       loadpins();
     });
     const un2 = navigation.addListener('beforeRemove', e => {
-      if (preventFromGoingBack) {
-        e.preventDefault();
-      }
+      e.preventDefault();
     });
 
     // Return the function to unsubscribe from the event so it gets removed on unmount
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+      un2();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation]);
 
@@ -111,7 +111,6 @@ const MapScreen = ({route, navigation}) => {
             key={i}
             coordinate={{latitude: marker.lat, longitude: marker.long}}
             onPress={() => {
-              setPreventFromGoingBack(false);
               getPinInfo(marker.id, token).then(r => {
                 navigation.navigate('MarkerScreen', {
                   markerId: marker.id,
@@ -131,8 +130,7 @@ const MapScreen = ({route, navigation}) => {
         <Button
           title="logout"
           onPress={() => {
-            setPreventFromGoingBack(false);
-            console.log(preventFromGoingBack);
+            navigation.removeListener('beforeRemove');
             navigation.reset({
               index: 0,
               routes: [{name: 'WelcomeScreen'}],
