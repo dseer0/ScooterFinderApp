@@ -54,6 +54,7 @@ const LoginScreen = ({navigation}) => {
         <TextInput
           style={styles.textinput}
           placeholder="Password"
+          secureTextEntry={true}
           underlineColorAndroid={'transparent'}
           onChangeText={t => setPasswordInput(t)}
         />
