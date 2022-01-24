@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-import {Button} from 'react-native';
+import {Button, Text, TouchableOpacity} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import GetLocation from 'react-native-get-location';
 import {StyleSheet, View} from 'react-native';
@@ -85,14 +85,29 @@ const MapScreen = ({route, navigation}) => {
     container: {
       flex: 1,
     },
+    buttonLogout: {
+      alignSelf: 'stretch',
+      alignItems: 'center',
+      padding: 20,
+      backgroundColor: '#1b4798',
+      marginTop: 10,
+    },
+    buttontxt: {
+      fontSize: 18,
+      color: '#fff',
+      fontWeight: 'bold',
+    },
     map: {
-      flex: 0.85,
+      flex: 0.75,
       // ...StyleSheet.absoluteFillObject,
     },
 
     fixToText: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
+      flex: 0.25,
+      justifyContent: 'center',
+      paddingLeft: 5,
+      paddingRight: 5,
+      alignSelf: 'stretch',
     },
   });
 
@@ -127,16 +142,26 @@ const MapScreen = ({route, navigation}) => {
       </MapView>
       <View style={styles.fixToText}>
         <ReportScooter onclicked={funce} />
-        <Button
-          title="logout"
+        <TouchableOpacity
+          style={styles.buttonLogout}
           onPress={() => {
             navigation.removeListener('beforeRemove');
             navigation.reset({
               index: 0,
               routes: [{name: 'WelcomeScreen'}],
             });
-          }}
-        />
+          }}>
+          <Text style={styles.buttontxt}>Logout</Text>
+        </TouchableOpacity>
+        {/*<Button*/}
+        {/*  title="logout"*/}
+        {/*  onPress={() => {*/}
+        {/*    navigation.removeListener('beforeRemove');*/}
+        {/*    navigation.reset({*/}
+        {/*      index: 0,*/}
+        {/*      routes: [{name: 'WelcomeScreen'}],*/}
+        {/*    });*/}
+        {/*  }}*/}
       </View>
     </View>
   );
