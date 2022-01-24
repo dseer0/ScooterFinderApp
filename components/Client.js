@@ -14,6 +14,7 @@ export const register = (mail, password, onSuccess, onFailure) => {
       password: password,
     }),
   }).then(r => {
+    console.log(r);
     const res = r.status;
     if (res === 200) {
       onSuccess();
