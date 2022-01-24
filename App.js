@@ -15,6 +15,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import EditMarkerScreen from './screens/EditMarkerScreen';
 import LoginScreen from './screens/LoginScreen';
+import MarkerScreen from './screens/MarkerScreen';
+import AddComment from './screens/AddComment';
 const Stack = createNativeStackNavigator();
 
 const App = () => (
@@ -26,13 +28,13 @@ const App = () => (
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="MapScreen"
-        component={MapScreen}
+        name="LoginScreen"
+        component={LoginScreen}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="LoginScreen"
-        component={LoginScreen}
+        name="MapScreen"
+        component={MapScreen}
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -41,8 +43,18 @@ const App = () => (
         options={{headerShown: false}}
       />
       <Stack.Screen
+        name="MarkerScreen"
+        component={MarkerScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
         name="EditMarkerScreen"
         component={EditMarkerScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="AddComment"
+        component={AddComment}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

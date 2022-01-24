@@ -24,7 +24,10 @@ import {
 
 const WelcomeScreen = ({navigation}) => (
   <View style={styles.container}>
-    <Image style={styles.image} source={require('../img/backgroundImage.png')} />
+    <Image
+      style={styles.image}
+      source={require('../img/backgroundImage.png')}
+    />
     <View style={styles.fixToText}>
       <Button
         style={styles.login}

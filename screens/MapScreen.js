@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-
+import {Button} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import GetLocation from 'react-native-get-location';
 import {StyleSheet, View} from 'react-native';
@@ -19,6 +19,7 @@ const MapScreen = ({route, navigation}) => {
   const [state, setState] = useState({markers: []});
   // const [token, setToken] = useState('');
   const token = route.params.token;
+  const [preventFromGoingBack, setPreventFromGoingBack] = useState(true);
 
   const loadpins = () => {
     getpins(token).then(json => {
@@ -48,8 +49,15 @@ const MapScreen = ({route, navigation}) => {
 
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      console.log('focus => ' + token);
+      //console.log('focus => ' + token);
+      setPreventFromGoingBack(true);
+
       loadpins();
+    });
+    const un2 = navigation.addListener('beforeRemove', e => {
+      if (preventFromGoingBack) {
+        e.preventDefault();
+      }
     });
 
     // Return the function to unsubscribe from the event so it gets removed on unmount
@@ -103,25 +111,34 @@ const MapScreen = ({route, navigation}) => {
             key={i}
             coordinate={{latitude: marker.lat, longitude: marker.long}}
             onPress={() => {
+              setPreventFromGoingBack(false);
               getPinInfo(marker.id, token).then(r => {
-                navigation.navigate('EditMarkerScreen', {
+                navigation.navigate('MarkerScreen', {
                   markerId: marker.id,
                   token: token,
                   description: r.description,
+                  comments: r.comments,
                 });
               });
+              // navigation.navigate('MarkerScreen');
+              // });
             }}
           />
         ))}
       </MapView>
       <View style={styles.fixToText}>
         <ReportScooter onclicked={funce} />
-        {/*<Button*/}
-        {/*  title="REPORT SCOOTER"*/}
-        {/*  onPress={() => {*/}
-        {/*    func();*/}
-        {/*  }}*/}
-        {/*/>*/}
+        <Button
+          title="logout"
+          onPress={() => {
+            setPreventFromGoingBack(false);
+            console.log(preventFromGoingBack);
+            navigation.reset({
+              index: 0,
+              routes: [{name: 'WelcomeScreen'}],
+            });
+          }}
+        />
       </View>
     </View>
   );

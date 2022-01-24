@@ -1,5 +1,5 @@
 import makeAlert from './Alert';
-
+import jwt from 'jwt-decode';
 export const login = (onSuccess, onFailure) => {};
 export const register = (mail, password, onSuccess, onFailure) => {
   return fetch('https://serverimage-itxfgp626q-lz.a.run.app/register', {
@@ -89,6 +89,25 @@ export const editPin = (id, description, token) => {
       pinId: id,
       description: description,
       pinName: '',
+    }),
+  });
+};
+
+export const addComment = (pinId, text, token) => {
+  const decoded = jwt(token);
+  const userid = decoded.id;
+  console.log(userid);
+  return fetch('https://serverimage-itxfgp626q-lz.a.run.app/comment', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    },
+    body: JSON.stringify({
+      content: text,
+      userId: userid,
+      pinId: pinId,
     }),
   });
 };

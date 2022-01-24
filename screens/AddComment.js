@@ -24,34 +24,30 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import MapView from 'react-native-maps';
-import {deletepin, editPin} from '../components/Client';
+import {addComment, deletepin, editPin} from '../components/Client';
 
-const EditMarkerScreen = ({route, navigation}) => {
+const AddComment = ({route, navigation}) => {
   const id = route.params.markerId;
   const token = route.params.token;
-  const description = route.params.description;
-  const [desc, setDesc] = useState('');
-  useState(() => {
-    setDesc(description);
-  }, [description]);
+
+  const [comment, setComment] = useState('');
 
   return (
     <View style={styles.container}>
       <View style={styles.markerForm}>
-        <Text style={styles.header}>Edit Marker</Text>
+        <Text style={styles.header}>Add Comment</Text>
         <TextInput
           style={styles.textinput}
-          placeholder="description"
+          placeholder=""
           underlineColorAndroid={'transparent'}
-          value={desc}
-          onChangeText={t => setDesc(t)}
+          onChangeText={t => setComment(t)}
         />
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            editPin(id, desc, token).then(() => {
-              navigation.navigate('MapScreen', {token: token});
-            });
+            addComment(id, comment, token).then(() =>
+              navigation.navigate('MapScreen', {token: token}),
+            );
           }}>
           <Text style={styles.buttontxt}>Submit</Text>
         </TouchableOpacity>
@@ -107,4 +103,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditMarkerScreen;
+export default AddComment;
