@@ -53,7 +53,13 @@ const RegisterScreen = ({navigation}) => {
               mailInput,
               passwordInput,
               () => navigation.navigate('LoginScreen'),
-              data => makeAlert('Registration failed', data.errors[0]),
+              data => {
+                if (data.errors && data.errors.length > 0) {
+                  makeAlert('Registration failed', data.errors[0]);
+                } else {
+                  makeAlert('Registration failed', data);
+                }
+              },
             );
           }}>
           <Text style={styles.buttontxt}>Register</Text>
