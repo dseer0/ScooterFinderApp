@@ -45,9 +45,11 @@ const AddComment = ({route, navigation}) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            addComment(id, comment, token).then(() =>
-              navigation.navigate('MapScreen', {token: token}),
-            );
+            addComment(id, comment, token)
+              .then(() => navigation.navigate('MapScreen', {token: token}))
+              .catch(ex => {
+                console.log(ex);
+              });
           }}>
           <Text style={styles.buttontxt}>Submit</Text>
         </TouchableOpacity>

@@ -13,15 +13,22 @@ export const register = (mail, password, onSuccess, onFailure) => {
       displayName: mail,
       password: password,
     }),
-  }).then(r => {
-    console.log(r);
-    const res = r.status;
-    if (res === 200) {
-      onSuccess();
-    } else {
-      r.json().then(data => onFailure(data));
-    }
-  });
+  })
+    .then(r => {
+      console.log(r);
+      const res = r.status;
+      if (res === 200) {
+        onSuccess();
+      } else {
+        r.json().then(data => onFailure(data));
+      }
+    })
+    .catch(e => {
+      makeAlert(
+        'Error',
+        'Something went wrong, please check internet connection!',
+      );
+    });
 };
 
 export const addpin = (coordinates, token) => {
@@ -39,6 +46,11 @@ export const addpin = (coordinates, token) => {
       pinName: 'pin',
       coordinates: coordinates,
     }),
+  }).catch(e => {
+    makeAlert(
+      'Error',
+      'Something went wrong, please check internet connection!',
+    );
   });
 };
 
@@ -50,6 +62,11 @@ export const getpins = token => {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + token,
     },
+  }).catch(e => {
+    makeAlert(
+      'Error',
+      'Something went wrong, please check internet connection!',
+    );
   });
 };
 
@@ -61,6 +78,11 @@ export const deletepin = (id, token) => {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + token,
     },
+  }).catch(e => {
+    makeAlert(
+      'Error',
+      'Something went wrong, please check internet connection!',
+    );
   });
 };
 
@@ -75,7 +97,14 @@ export const getPinInfo = (id, token) => {
         Authorization: 'Bearer ' + token,
       },
     },
-  ).then(r => r.json());
+  )
+    .catch(e => {
+      makeAlert(
+        'Error',
+        'Something went wrong, please check internet connection!',
+      );
+    })
+    .then(r => r.json());
 };
 
 export const editPin = (id, description, token) => {
@@ -91,6 +120,11 @@ export const editPin = (id, description, token) => {
       description: description,
       pinName: '',
     }),
+  }).catch(e => {
+    makeAlert(
+      'Error',
+      'Something went wrong, please check internet connection!',
+    );
   });
 };
 
@@ -110,5 +144,10 @@ export const addComment = (pinId, text, token) => {
       userId: userid,
       pinId: pinId,
     }),
+  }).catch(e => {
+    makeAlert(
+      'Error',
+      'Something went wrong, please check internet connection!',
+    );
   });
 };

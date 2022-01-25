@@ -134,13 +134,17 @@ const MarkerScreen = ({route, navigation}) => {
           <TouchableOpacity
             style={styles.buttonEdit}
             onPress={() => {
-              getPinInfo(id, token).then(r => {
-                navigation.navigate('EditMarkerScreen', {
-                  token: token,
-                  markerId: id,
-                  description: r.description,
+              getPinInfo(id, token)
+                .then(r => {
+                  navigation.navigate('EditMarkerScreen', {
+                    token: token,
+                    markerId: id,
+                    description: r.description,
+                  });
+                })
+                .catch(ex => {
+                  console.log(ex);
                 });
-              });
             }}>
             <Text style={styles.buttontxt}>Edit Description</Text>
           </TouchableOpacity>

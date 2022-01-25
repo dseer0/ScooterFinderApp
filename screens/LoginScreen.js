@@ -54,6 +54,7 @@ const LoginScreen = ({navigation}) => {
         <TextInput
           style={styles.textinput}
           placeholder="Password"
+          secureTextEntry={true}
           underlineColorAndroid={'transparent'}
           onChangeText={t => setPasswordInput(t)}
         />
@@ -85,6 +86,12 @@ const LoginScreen = ({navigation}) => {
                   });
                 }
                 //console.log(obj.body);
+              })
+              .catch(e => {
+                makeAlert(
+                  'Error',
+                  'Something went wrong, please check internet connection!',
+                );
               });
           }}>
           <Text style={styles.buttontxt}>Login</Text>

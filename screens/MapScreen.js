@@ -15,35 +15,40 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {addpin, getPinInfo, getpins} from '../components/Client';
 import {useIsFocused} from '@react-navigation/native';
 import {useFocusEffect} from '@react-navigation/core';
+import makeAlert from '../components/Alert';
 const MapScreen = ({route, navigation}) => {
   const [state, setState] = useState({markers: []});
   // const [token, setToken] = useState('');
   const token = route.params.token;
 
   const loadpins = () => {
-    getpins(token).then(json => {
-      if (json.status === 200) {
-        json.json().then(json => {
-          console.log('got json' + json);
-          let tempMarkers = [];
+    getpins(token)
+      .then(json => {
+        if (json.status === 200) {
+          json.json().then(json => {
+            console.log('got json' + json);
+            let tempMarkers = [];
 
-          json.forEach(pin => {
-            const latitude = parseFloat(pin.coordinates.split(',')[0]);
-            const longitude = parseFloat(pin.coordinates.split(',')[1]);
-            tempMarkers.push({
-              lat: latitude,
-              long: longitude,
-              description: '',
-              id: pin.id,
+            json.forEach(pin => {
+              const latitude = parseFloat(pin.coordinates.split(',')[0]);
+              const longitude = parseFloat(pin.coordinates.split(',')[1]);
+              tempMarkers.push({
+                lat: latitude,
+                long: longitude,
+                description: '',
+                id: pin.id,
+              });
             });
+            console.log('setting pins');
+            setState(prevState => ({
+              markers: tempMarkers,
+            }));
           });
-          console.log('setting pins');
-          setState(prevState => ({
-            markers: tempMarkers,
-          }));
-        });
-      }
-    });
+        }
+      })
+      .catch(ex => {
+        console.log(ex);
+      });
   };
 
   React.useEffect(() => {
@@ -78,7 +83,10 @@ const MapScreen = ({route, navigation}) => {
       })
       .catch(error => {
         const {code, message} = error;
-        console.warn(code, message);
+        makeAlert(
+          'Error',
+          'Something went wrong, please check if location and internet are turned on!',
+        );
       });
 
   const styles = StyleSheet.create({
@@ -126,14 +134,18 @@ const MapScreen = ({route, navigation}) => {
             key={i}
             coordinate={{latitude: marker.lat, longitude: marker.long}}
             onPress={() => {
-              getPinInfo(marker.id, token).then(r => {
-                navigation.navigate('MarkerScreen', {
-                  markerId: marker.id,
-                  token: token,
-                  description: r.description,
-                  comments: r.comments,
+              getPinInfo(marker.id, token)
+                .then(r => {
+                  navigation.navigate('MarkerScreen', {
+                    markerId: marker.id,
+                    token: token,
+                    description: r.description,
+                    comments: r.comments,
+                  });
+                })
+                .catch(ex => {
+                  console.log(ex);
                 });
-              });
               // navigation.navigate('MarkerScreen');
               // });
             }}
