@@ -36,7 +36,7 @@ export const addpin = (coordinates, token) => {
       pinTypeId: 1,
       userId: 1,
       description: '',
-      pinName: '',
+      pinName: 'pin',
       coordinates: coordinates,
     }),
   });

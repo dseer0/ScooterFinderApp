@@ -76,7 +76,7 @@ const LoginScreen = ({navigation}) => {
               )
               .then(obj => {
                 if (obj.status !== 200) {
-                  makeAlert('Could not login', obj.body);
+                  makeAlert('Could not login', obj.body.errors[0]);
                 } else {
                   //AsyncStorage.setItem('token', obj.body);
                   setToken(obj.body);
