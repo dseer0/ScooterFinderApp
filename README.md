@@ -1,3 +1,10 @@
+# Jak uruchomić?
+Po sclonowaniu repozytorium uruchamiamy aplikację komendą: 
+```
+npx react-native run-android
+```
+Wymaga emulatora/podpiętego telefonu z androidem
+
 # Main Screen
 <img src="https://github.com/dseer0/ScooterFinderApp/raw/master/mainscreen.jpg" width="229" height="484"></img>
 # Login Screen
