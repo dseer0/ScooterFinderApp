@@ -1,5 +1,5 @@
 # Screen login/register
-<img src="https://github.com/dseer0/ScooterFinderApp/raw/master/mainview.png" width="229" height="484"></img>
+<img src="https://github.com/dseer0/ScooterFinderApp/raw/master/mainscreen.jpg" width="229" height="484"></img>
 # Podgląd mapy
 <img src="https://github.com/dseer0/ScooterFinderApp/raw/master/reportscooter.png" width="229" height="484"></img>
 # Ustawiony marker hulajnogi
